@@ -2,7 +2,7 @@ class ShapeException(Exception):
     pass
 
 
-class Vector():
+class Vector:
 
     def __init__(self, vec):
         self.vec = vec
