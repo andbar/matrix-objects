@@ -8,6 +8,9 @@ class Vector:
         self.vec = vec
         self.shape = len(self.vec)
 
+    def __str__(self):
+        return "{}".format(self.vec)
+
     def shape_checker(self, other):
         if self.shape != other.shape:
             raise ShapeException()
@@ -59,6 +62,9 @@ class Matrix:
         self.matrix = matrix
         self.shape = (len(matrix), len(matrix[0]))
 
+    def __str__(self):
+        return "{}".format(self.matrix)
+
     def matrix_row(self, row):
         return self.matrix[row]
 
@@ -67,6 +73,26 @@ class Matrix:
         for row in self.matrix:
             col_list.append(row[col])
         return col_list
+
+    def __add__(self, other):
+        self.shape_checker(other)
+        added_matrix = []
+        for index, row in enumerate(self.matrix):
+            added_row = []
+            for ind, val in enumerate(row):
+                added_row.append(val + other.matrix[index][ind])
+            added_matrix.append(added_vector)
+        return Matrix(added_matrix)
+
+    def __sub__(self, other):
+        self.shape_checker(other)
+        subtract_matrix = []
+        for index, row in enumerate(self.matrix):
+            subtract_row = []
+            for ind, val in enumerate(row):
+                subtract_row.append(val - other.matrix[index][ind])
+            subtract_matrix.append(subtract_row)
+        return Matrix(subtract_matrix)
 
     def matrix_scalar_multiply(self, other):
         output_matrix = []
