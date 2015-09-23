@@ -17,20 +17,20 @@ class Vector():
         added_vector = []
         for index, value in enumerate(self.vec):
             added_vector.append(self.vec[index] + other.vec[index])
-        return added_vector
+        return Vector(added_vector)
 
     def __sub__(self, other):
         self.shape_checker(other)
         subtract_vector = []
         for index, value in enumerate(self.vec):
             subtract_vector.append(self.vec[index] - other.vec[index])
-        return subtract_vector
+        return Vector(subtract_vector)
 
     def __mul__(self, other):
         mult_vector = []
         for row in self.vec:
             mult_vector.append(row * other)
-        return mult_vector
+        return Vector(mult_vector)
 
     def __eq__(self, other):
         if self.vec == other.vec:
@@ -75,7 +75,7 @@ class Matrix:
             for col in row:
                 output_row.append(col * other)
             output_matrix.append(output_row)
-        return output_matrix
+        return Matrix(output_matrix)
 
     def matrix_vector_multiply(self, other):
         if len(self.matrix[0]) != other.shape:
@@ -86,7 +86,7 @@ class Matrix:
             for index, value in enumerate(row):
                 output_row.append(value * other.vec[index])
             output_vector.append(sum(output_row))
-        return output_vector
+        return Vector(output_vector)
 
     def __mul__(self, other):
         if isinstance(other, Vector):
