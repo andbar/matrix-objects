@@ -30,10 +30,13 @@ class Vector:
         return Vector(subtract_vector)
 
     def __mul__(self, other):
-        mult_vector = []
-        for row in self.vec:
-            mult_vector.append(row * other)
-        return Vector(mult_vector)
+        if isinstance(other, self.__class__):
+            return self.dot(other)
+        else:
+            mult_vector = []
+            for row in self.vec:
+                mult_vector.append(row * other)
+            return Vector(mult_vector)
 
     def __eq__(self, other):
         if self.vec == other.vec:
@@ -49,11 +52,7 @@ class Vector:
         return sum(values)
 
     def magnitude(self):
-        values = []
-        for index, value in enumerate(self.vec):
-            values.append(value ** 2)
-        magn = sum(values)
-        return magn ** 0.5
+        return self.dot(self) ** 0.5
 
 
 class Matrix:
